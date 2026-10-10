@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+<title id="title">Jan Seva Sathi logo</title><desc id="desc">A friendly blue and green digital service emblem with a home, people, and a saffron accent.</desc>
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#1166b2"/><stop offset="1" stop-color="#087b67"/></linearGradient></defs>
+<rect x="4" y="4" width="120" height="120" rx="30" fill="url(#bg)"/>
+<path d="M24 56 64 26 104 56" fill="none" stroke="#ffcf5b" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M34 54v43h60V54" fill="none" stroke="#fff" stroke-width="7" stroke-linejoin="round"/>
+<path d="M53 97V72a11 11 0 0 1 22 0v25" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round"/>
+<circle cx="64" cy="58" r="4" fill="#ffcf5b"/>
+<path d="M24 104h80" stroke="#bdebd9" stroke-width="5" stroke-linecap="round"/>
+</svg>
