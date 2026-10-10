@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#1166b2">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="icon" href="logo.svg" type="image/svg+xml">
+<meta name="description" content="Jan Seva Sathi — सरकारी सेवाओं के आधिकारिक पोर्टल एक जगह।">
+<link rel="manifest" href="manifest.json">
+<title>जन सेवा साथी | Jan Seva Sathi</title>
+<style>
+:root{--green:#1166b2;--green2:#087b67;--cream:#f5f8fc;--ink:#172536;--muted:#667789;--line:#dfe8f1;--gold:#ffcf5b}
+*{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--ink);font-family:system-ui,-apple-system,"Noto Sans Devanagari",sans-serif}
+header{background:linear-gradient(130deg,#104a88,#087b67);color:white;padding:25px 18px 28px;border-radius:0 0 26px 26px}
+.wrap{max-width:1100px;margin:auto}.top{display:flex;align-items:center;gap:12px}.logo{width:54px;height:54px;border-radius:15px;display:block;flex-shrink:0;box-shadow:0 4px 16px #001c3328}
+h1{font-size:clamp(23px,4vw,34px);margin:0}.sub{margin:7px 0 18px;color:#e1f4e5}.search{display:flex;gap:8px;max-width:700px}.search input{flex:1;min-width:0;padding:14px 15px;border:0;border-radius:12px;font-size:16px}.search button{border:0;border-radius:12px;padding:0 18px;background:var(--gold);font-weight:800;color:#382b00}
+main{max-width:1100px;margin:22px auto;padding:0 16px 36px}.notice{background:#fff8df;border:1px solid #f1df9a;padding:13px 15px;border-radius:13px;color:#5d4a08;font-size:14px;line-height:1.5;margin-bottom:20px}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:10px;margin:22px 0 12px}.section-head h2{margin:0;font-size:20px}.count{font-size:13px;color:var(--muted)}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}.chip{border:1px solid var(--line);background:white;color:#35523d;border-radius:999px;padding:8px 13px;cursor:pointer}.chip.active{background:var(--green);color:white;border-color:var(--green)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:13px}.card{background:white;border:1px solid var(--line);border-radius:16px;padding:16px;display:flex;flex-direction:column;min-height:180px;box-shadow:0 4px 16px #173d1a08}.icon{font-size:25px}.card h3{font-size:17px;margin:9px 0 5px}.card p{font-size:13px;color:var(--muted);line-height:1.45;margin:0 0 15px;flex:1}.go{display:inline-block;text-align:center;text-decoration:none;background:#e8f4eb;color:#14532d;font-weight:750;padding:10px 12px;border-radius:10px}.go:hover{background:#d6eadb}
+footer{border-top:1px solid var(--line);padding:20px 16px;color:var(--muted);font-size:13px;text-align:center}.empty{padding:28px;text-align:center;color:var(--muted);display:none}
+@media(max-width:520px){header{padding:20px 14px 23px}.search button{padding:0 12px}main{padding-left:12px;padding-right:12px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.card{padding:12px;min-height:190px}.card h3{font-size:15px}.card p{font-size:12px}.go{font-size:13px;padding:9px 7px}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+ <div class="top"><img class="logo" src="logo.svg" alt="Jan Seva Sathi logo"><div><h1>जन सेवा साथी</h1><div style="font-size:13px;color:#d9f2df">Jan Seva Sathi · आपकी सरकारी सेवाओं का आसान साथी</div></div></div>
+ <p class="sub">बिल, जमीन रिकॉर्ड, पहचान-पत्र और नागरिक सेवाएँ — भरोसेमंद आधिकारिक पोर्टल तक आसान पहुँच।</p>
+ <div class="search"><input id="q" type="search" placeholder="सेवा खोजें… जैसे बिजली बिल, भू नक्शा"><button id="clear">साफ़ करें</button></div>
+</div></header>
+<main>
+<div class="notice"><strong>ज़रूरी सुरक्षा सूचना:</strong> यह शुरुआती पोर्टल/डेमो है, सरकारी वेबसाइट नहीं। यहाँ Aadhaar नंबर, OTP, बैंक विवरण या पासवर्ड न भरें। भुगतान और KYC केवल संबंधित आधिकारिक/अधिकृत पोर्टल या केंद्र पर करें। कुछ सेवाओं के लिए पंजीकरण/अधिकृत ऑपरेटर की जरूरत होती है।</div>
+<div class="section-head"><h2>लोकप्रिय सेवाएँ</h2><span class="count" id="count"></span></div>
+<div class="filters" id="filters">
+<button class="chip active" data-cat="all">सभी सेवाएँ</button>
+<button class="chip" data-cat="bill">बिल व रिचार्ज</button>
+<button class="chip" data-cat="land">जमीन रिकॉर्ड</button>
+<button class="chip" data-cat="id">ID व दस्तावेज़</button>
+<button class="chip" data-cat="benefit">योजनाएँ व प्रमाणपत्र</button>
+<button class="chip" data-cat="other">अन्य सेवाएँ</button>
+</div>
+<div class="grid" id="grid">
+<article class="card" data-cat="bill" data-terms="बिजली बिल चेक जमा electricity bill payment बिजली"><div class="icon">💡</div><h3>बिजली बिल चेक / जमा</h3><p>अपने राज्य की बिजली कंपनी का आधिकारिक पोर्टल चुनें। बिल और भुगतान के लिए राज्य/डिस्कॉम के अनुसार लिंक अलग होता है।</p><a class="go" href="https://services.india.gov.in/service/listing?cat_id=110&ln=en" target="_blank" rel="noopener">बिजली सेवाएँ खोजें ↗</a></article>
+<article class="card" data-cat="land" data-terms="गांव गांव का भू नक्शा जमीन खसरा खतौनी land records"><div class="icon">🗺️</div><h3>गाँव का भू-नक्शा / जमीन रिकॉर्ड</h3><p>राज्य के आधिकारिक भूलेख/भू-नक्शा पोर्टल से गाँव, जिला और सर्वे/खसरा विवरण के अनुसार देखें।</p><a class="go" href="https://services.india.gov.in/service/search?kw=land%20records&ln=en" target="_blank" rel="noopener">राज्य का पोर्टल खोजें ↗</a></article>
+<article class="card" data-cat="id" data-terms="आधार aadhaar uidai kyc update appointment"><div class="icon">🪪</div><h3>आधार सेवाएँ / अपडेट</h3><p>आधार स्टेटस, अपडेट जानकारी और अधिकृत आधार केंद्र/अपॉइंटमेंट के लिए UIDAI की आधिकारिक साइट।</p><a class="go" href="https://uidai.gov.in/" target="_blank" rel="noopener">UIDAI खोलें ↗</a></article>
+<article class="card" data-cat="id" data-terms="आधार बैंक लिंक बैंक पासबुक aadhaar bank seeding dbt"><div class="icon">🏦</div><h3>आधार–बैंक लिंक स्थिति</h3><p>बैंक खाते में आधार सीडिंग/DBT स्थिति की जानकारी के लिए NPCI या अपने बैंक के आधिकारिक चैनल का उपयोग करें।</p><a class="go" href="https://www.npci.org.in/" target="_blank" rel="noopener">NPCI खोलें ↗</a></article>
+<article class="card" data-cat="id" data-terms="आधार पैन लिंक pan aadhaar status income tax"><div class="icon">🔗</div><h3>आधार–PAN लिंक स्थिति</h3><p>आयकर विभाग के आधिकारिक पोर्टल पर लिंक स्थिति और संबंधित सेवाएँ देखें।</p><a class="go" href="https://www.incometax.gov.in/" target="_blank" rel="noopener">Income Tax खोलें ↗</a></article>
+<article class="card" data-cat="id" data-terms="वोटर कार्ड voter id चुनाव eci"><div class="icon">🗳️</div><h3>वोटर कार्ड सेवाएँ</h3><p>वोटर सूची, आवेदन, सुधार और आवेदन की स्थिति के लिए चुनाव आयोग का पोर्टल।</p><a class="go" href="https://voters.eci.gov.in/" target="_blank" rel="noopener">Voters’ Services ↗</a></article>
+<article class="card" data-cat="id" data-terms="पैन कार्ड pan apply"><div class="icon">📄</div><h3>PAN कार्ड सेवाएँ</h3><p>PAN से जुड़ी आधिकारिक सेवाएँ और जानकारी आयकर विभाग के पोर्टल से शुरू करें।</p><a class="go" href="https://www.incometax.gov.in/" target="_blank" rel="noopener">आधिकारिक पोर्टल ↗</a></article>
+<article class="card" data-cat="id" data-terms="डिजिलॉकर दस्तावेज़ digilocker certificate"><div class="icon">📂</div><h3>DigiLocker दस्तावेज़</h3><p>उपलब्ध डिजिटल दस्तावेज़ और प्रमाणपत्र सुरक्षित रूप से प्राप्त करें।</p><a class="go" href="https://www.digilocker.gov.in/" target="_blank" rel="noopener">DigiLocker खोलें ↗</a></article>
+<article class="card" data-cat="benefit" data-terms="जाति आय निवास जन्म मृत्यु प्रमाणपत्र certificate service plus"><div class="icon">📜</div><h3>आय / जाति / निवास प्रमाणपत्र</h3><p>आवेदन की सुविधा राज्य और जिले के अनुसार बदलती है। आधिकारिक ServicePlus/राज्य पोर्टल से खोजें।</p><a class="go" href="https://serviceonline.gov.in/" target="_blank" rel="noopener">ServicePlus खोलें ↗</a></article>
+<article class="card" data-cat="benefit" data-terms="पीएम किसान किसान सम्मान निधि pm kisan"><div class="icon">🌾</div><h3>PM-KISAN</h3><p>किसान योजना की स्थिति, पात्रता और आधिकारिक जानकारी देखें।</p><a class="go" href="https://pmkisan.gov.in/" target="_blank" rel="noopener">PM-KISAN खोलें ↗</a></article>
+<article class="card" data-cat="other" data-terms="सरकारी सेवा खोजें national government services portal"><div class="icon">🔎</div><h3>अन्य सरकारी सेवाएँ</h3><p>केंद्र और राज्य की हजारों सरकारी सेवाएँ श्रेणी या राज्य के अनुसार खोजें।</p><a class="go" href="https://services.india.gov.in/" target="_blank" rel="noopener">सेवा खोजें ↗</a></article>
+<article class="card" data-cat="other" data-terms="पासपोर्ट passport appointment"><div class="icon">🛂</div><h3>पासपोर्ट सेवाएँ</h3><p>आवेदन, अपॉइंटमेंट और स्टेटस के लिए आधिकारिक Passport Seva पोर्टल।</p><a class="go" href="https://www.passportindia.gov.in/" target="_blank" rel="noopener">Passport Seva ↗</a></article>
+</div>
+<div class="empty" id="empty">इस नाम से सेवा नहीं मिली। दूसरा शब्द लिखकर देखें।</div>
+</main>
+<footer><img src="logo.svg" alt="" width="30" height="30" style="vertical-align:middle;margin-bottom:6px"><br><strong>जन सेवा साथी</strong> · सरल डिजिटल सेवाएँ, सबके लिए<br>यह एक स्वतंत्र सेवा-निर्देशिका है, सरकारी वेबसाइट नहीं है और किसी सरकारी विभाग से संबद्ध नहीं है।<br>लिंक, उपलब्धता, शुल्क और नियम संबंधित आधिकारिक पोर्टल पर जाँचें।</footer>
+<script>
+const q=document.getElementById('q'), cards=[...document.querySelectorAll('.card')], chips=[...document.querySelectorAll('.chip')], count=document.getElementById('count'), empty=document.getElementById('empty');let cat='all';
+function render(){let term=q.value.trim().toLowerCase(),shown=0;cards.forEach(c=>{let matchCat=cat==='all'||c.dataset.cat===cat;let text=(c.innerText+' '+c.dataset.terms).toLowerCase();let matchText=!term||text.includes(term);c.style.display=matchCat&&matchText?'flex':'none';if(matchCat&&matchText)shown++});count.textContent=shown+' सेवाएँ';empty.style.display=shown?'none':'block'}
+q.addEventListener('input',render);document.getElementById('clear').onclick=()=>{q.value='';cat='all';chips.forEach(x=>x.classList.toggle('active',x.dataset.cat==='all'));render()};chips.forEach(x=>x.onclick=()=>{cat=x.dataset.cat;chips.forEach(y=>y.classList.toggle('active',y===x));render()});render();
+if('serviceWorker' in navigator && location.protocol.startsWith('http')) window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+</script>
+</body></html>
